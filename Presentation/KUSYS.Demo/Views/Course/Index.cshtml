@@ -1,0 +1,54 @@
+﻿@model List<KUSYS.Domain.Entities.Course>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Dersler</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a href="@Url.Action("Update","Course",new{id=0})" class="btn blue mt-ladda-btn ladda-button btn-circle btn-outline"> Ekle </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th> Ders Kodu </th>
+                                <th> Ders Adı </th>
+                                <th> # </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CourseCode</td>
+                                    <td>@item.CourseName</td>
+                                    <td>
+                                        <div class="clearfix">
+                                            <a href="javascript:void(0)" data-course-id="@item.Id" class="btn red mt-ladda-btn ladda-button btn-circle btn-outline course-remove">
+                                                <span class="glyphicon glyphicon-remove"> </span>
+                                                Sil
+                                            </a>
+                                            <a href="@Url.Action("Update","Course", new {id=item.Id})" class="btn purple mt-ladda-btn ladda-button btn-circle btn-outline">
+                                                <span class="glyphicon glyphicon-edit"> </span> Düzenle
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model KUSYS.Domain.Entities.Course
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="basic-form-layouts">
+    <div class="row match-height">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-form">Ders Düzenle</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block">
+                       @using (Html.BeginForm("Update", "Course", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(q=>q.Id)
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="icon-head"></i> Ders Bilgileri</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Ders Kodu</label>
+                                            @Html.TextBoxFor(m => m.CourseCode ,new { placeholder = "Ders Kodu", @class = "form-control", @id = "CourseCode", autocomplete = "off"})
+                                            @Html.ValidationMessageFor(model => model.CourseCode)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput2">Ders Adı</label>
+                                            @Html.TextBoxFor(m => m.CourseName ,new { placeholder = "Ders Adı", @class = "form-control", @id = "CourseName", autocomplete = "off"})
+                                            @Html.ValidationMessageFor(model => model.CourseName)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="icon-check2"></i> Save
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

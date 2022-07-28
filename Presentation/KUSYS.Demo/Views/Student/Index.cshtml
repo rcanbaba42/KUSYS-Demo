@@ -1,0 +1,107 @@
+﻿@model List<KUSYS.Domain.Entities.Student>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Öğrenciler</h4>
+                <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                        <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        <li><a href="@Url.Action("Update","Student",new{id=0})" class="btn blue mt-ladda-btn ladda-button btn-circle btn-outline"> Ekle </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body collapse in">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Öğrenci Numarası</th>
+                                <th>Ad</th>
+                                <th>Soyad</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.StudentNo</td>
+                                    <td>@item.FirstName</td>
+                                    <td>@item.LastName</td>
+                                    <td>
+                                        <div class="clearfix">
+                                            <a href="javascript:void(0)" data-student-id="@item.Id" class="btn red mt-ladda-btn ladda-button btn-circle btn-outline student-remove">
+                                                <span class="glyphicon glyphicon-remove"> </span>
+                                                Sil
+                                            </a>
+
+                                            <a href="@Url.Action("Update","Student", new {id=item.Id})" class="btn purple mt-ladda-btn ladda-button btn-circle btn-outline">
+                                                <span class="glyphicon glyphicon-edit"> </span> Düzenle
+                                            </a>
+                                            <a href="javascript:void(0)" data-student-id="@item.Id" class="btn yellow mt-ladda-btn ladda-button btn-circle btn-outline student-detail">
+                                                <span class="glyphicon glyphicon-file"> </span> Detay
+                                            </a>
+                                            <a href="javascript:void(0)" data-student-id="@item.Id" class="btn blue mt-ladda-btn ladda-button btn-circle btn-outline student-course">
+                                                <span class="glyphicon glyphicon-book"> </span> Dersler
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade text-xs-left" id="detail-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Öğrenci Bilgileri</h4>
+            </div>
+            <div class="modal-body">
+                <span><i class="icon-arrow-right-c"></i> Öğrenci Numarası</span>
+                <h6 class="student-no"></h6>
+                <hr>
+                <span><i class="icon-arrow-right-c"></i> Adı Soyadı</span>
+                <h6 class="student-fullname"></h6>
+                <hr>
+                <span><i class="icon-arrow-right-c"></i> Doğum Tarihi</span>
+                <h6 class="student-birthdate"></h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-xs-left" id="courses-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <label class="modal-title text-text-bold-600" id="myModalLabel33">Ders Seçimi</label>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

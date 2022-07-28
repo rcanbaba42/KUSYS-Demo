@@ -1,0 +1,74 @@
+﻿@model KUSYS.Domain.Entities.Student
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="basic-form-layouts">
+    <div class="row match-height">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title" id="basic-layout-form">Öğrenci Düzenle</h4>
+                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="icon-minus4"></i></a></li>
+                            <li><a data-action="expand"><i class="icon-expand2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body collapse in">
+                    <div class="card-block">
+                        @using (Html.BeginForm("Update", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(q=>q.Id)
+                            <div class="form-body">
+                                <h4 class="form-section"><i class="icon-head"></i> Öğrenci Bilgileri</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput1">Adı</label>
+                                            @Html.TextBoxFor(m => m.FirstName ,new { placeholder = "Adı", @class = "form-control", @id = "FirstName", autocomplete = "off"})
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput2">Soyadı</label>
+                                            @Html.TextBoxFor(m => m.LastName ,new { placeholder = "Soyadı", @class = "form-control", @id = "LastName", autocomplete = "off"})
+                                            @Html.ValidationMessageFor(model => model.LastName)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput3">Numara</label>
+                                            @Html.TextBoxFor(m => m.StudentNo ,new { placeholder = "Numara", @type="number", @class = "form-control", @id = "StudentNo", autocomplete = "off"})
+                                            @Html.ValidationMessageFor(model => model.StudentNo)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="issueinput3">Doğum Tarihi</label>
+                                            @Html.TextBoxFor(m => m.BirthDate,"{0:yyyy-MM-dd}" ,new {type="date", @class = "form-control", @id = "BirthDate"})
+                                            @Html.ValidationMessageFor(model => model.BirthDate)
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="icon-check2"></i> Save
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
